@@ -1,0 +1,371 @@
+{
+    "getAccessToken": {
+        "header": {
+            "type": "object",
+            "properties": {
+                "Content-Type":{
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["Content-Type"],
+            "additionalProperties": true
+        },
+        
+        "form_params": {
+            "type": "object",
+            "properties": {
+                "grant_type": {
+                    "type": "string",
+                    "enum": ["authorization_code", "refresh_token", "password"]
+                },
+                "code": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "client_id": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "client_secret": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "redirect_uri": {
+                    "type": "string",
+                    "format" : "uri"
+                }
+            },
+            "required": ["code", "client_id", "client_secret", "grant_type", "redirect_uri"],
+            "additionalProperties": false
+        }
+    },
+
+    "refreshAccessToken": {
+        "header": {
+            "type": "object",
+            "properties": {
+                "Content-Type":{
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["Content-Type"],
+            "additionalProperties": true
+        },
+
+        "form_params": {
+            "type": "object",
+            "properties": {
+                "grant_type" : {
+                    "type": "string",
+                    "enum": ["authorization_code", "refresh_token", "password"]
+                },
+                "client_id": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "client_secret" : {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "refresh_token" : {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "redirect_uri" : {
+                    "type": "string",
+                    "format" : "uri"
+                }
+            },
+            "required": ["refresh_token", "client_id", "client_secret", "grant_type", "redirect_uri"],
+            "additionalProperties": false
+        }
+    },
+
+    "getTokenInfo": {
+        "header": {
+            "type": "object",
+            "properties": {
+                "Content-Type":{
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["Content-Type"],
+            "additionalProperties": true
+        },
+
+        "form_params": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "token_type_hint" : {
+                    "type": "string",
+                    "enum" : ["access_token","refresh_token","id_token"]
+                },
+                "client_id": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "client_secret" : {
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["token", "token_type_hint", "client_id", "client_secret"],
+            "additionalProperties": false
+        }
+
+    },
+
+    "revokeToken": {
+        "header": {
+            "type": "object",
+            "properties": {
+                "Content-Type":{
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["Content-Type"],
+            "additionalProperties": true
+        },
+
+        "form_params": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "token_type_hint" : {
+                    "type": "string",
+                    "enum" : ["access_token","refresh_token","id_token"]
+                },
+                "client_id": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "client_secret" : {
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["token", "token_type_hint", "client_id", "client_secret"],
+            "additionalProperties": false
+        }
+
+    },
+
+    "handshake" : {
+        "header": {
+            "type": "object",
+            "properties": {
+                "Content-Type":{
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "Authorization": {
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["Content-Type", "Authorization"],
+            "additionalProperties": true
+        },
+
+        "form_params": {
+            "type": "object",
+            "properties": {
+                "api_token" : {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "client_id": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "device_name": {
+                    "type": "string"
+                },
+                "device_uid" : {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "device_lat": {
+                    "type": "number"
+                },
+                "device_lon" : {
+                    "type": "number"
+                },
+                "device_type" : {
+                    "type": "string",
+                    "enum" : ["Mobile Phone", "Desktop", "Tablet", "Console", "TV Device"]
+                },
+                "device_os_version" : {
+                    "type": "string"
+                }
+            },
+            "required": ["api_token","client_id","device_uid"],
+            "additionalProperties": false
+        }
+    },
+
+    "signatureAuthorize" : {
+        "header": {
+            "type": "object",
+            "properties": {
+                "Content-Type":{
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "Authorization": {
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["Content-Type", "Authorization"],
+            "additionalProperties": true
+        },
+
+        "form_params": {
+            "type": "object",
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "privateKey": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "keyId": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "response_type": {
+                    "type": "string",
+                    "enum" : ["code","token","id_token"]
+                },
+                "loginAsUserId": {
+                    "type": "string"
+                },
+                "state" : {
+                    "type": "string"
+                },
+                "client_id": {
+                    "type": "string"
+                },
+                "redirect_uri": {
+                    "type": "string",
+                    "format" : "uri"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "callback_uri": {
+                    "type": "string"
+                },
+                "code_challenge": {
+                    "type": "string"
+                },
+                "code_challenge_method": {
+                    "type": "string"
+                },
+                "referrerType": {
+                    "type": "string",
+                    "enum" : ["id", "username", "phone_number", "email", "nationalcode"]
+                },
+                "referrer" : {
+                    "type": "string"
+                }
+            },
+            "required": ["identity", "response_type", "privateKey", "keyId"],
+            "additionalProperties": false
+        }
+    },
+
+    "verifyOTP" : {
+        "header": {
+            "type": "object",
+            "properties": {
+                "Content-Type":{
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["Content-Type", "Authorization"],
+            "additionalProperties": true
+        },
+
+        "form_params": {
+            "type": "object",
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "keyId": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "signature": {
+                    "type": "string",
+                    "minLength" : 1
+                },
+                "headers": {
+                    "type": "string"
+                },
+                "otp": {
+                    "type": "string",
+
+                    "minLength" : 1
+                }
+            },
+            "required": ["otp","identity", "keyId", "signature"],
+            "additionalProperties": false
+        }
+    },
+
+    "getAccessTokenByOTP": {
+        "header": {
+            "type": "object",
+            "properties": {
+                "Content-Type":{
+                    "type": "string",
+                    "minLength" : 1
+                }
+            },
+            "required": ["Content-Type"],
+            "additionalProperties": true
+        },
+
+        "form_params": {
+            "type": "object",
+            "properties": {
+                "grant_type" : {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string",
+                     "minLength" : 1
+                },
+                "client_id": {
+                    "type": "string",
+                     "minLength" : 1
+                },
+                "client_secret" : {
+                    "type": "string",
+                     "minLength" : 1
+                }
+            },
+            "required": ["code", "client_id", "client_secret", "grant_type"],
+            "additionalProperties": false
+        }
+    }
+
+}

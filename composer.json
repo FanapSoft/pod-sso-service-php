@@ -1,0 +1,24 @@
+{
+  "name": "pod-sdk/pod-sso-service",
+  "version": "1.0.0",
+  "type": "library",
+  "keywords": ["sdk", "pod sdk", "pod sdk sso service"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Fanap Soft SDK Develop Team",
+      "email": "podsdk@fanap.ir"
+    }
+  ],
+  "description": "POD SDK SSO Service",
+
+  "require": {
+    "ext-openssl": "*",
+    "pod-sdk/pod-base-service" : "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pod\\Sso\\Service\\" : "models/"
+    }
+  }
+}
