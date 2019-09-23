@@ -21,19 +21,24 @@
                 },
                 "code": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "کد دریافتی از سرور SSO"
                 },
                 "client_id": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "شناسه کلاینت"
                 },
                 "client_secret": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "کد دسترسی کلاینت"
                 },
                 "redirect_uri": {
                     "type": "string",
-                    "format" : "uri"
+                    "format" : "uri",
+                    "title": "آدرس بازگشت",
+                    "description": "این آدرس باید در سرور SSO ثبت شده باشد"
                 }
             },
             "required": ["code", "client_id", "client_secret", "grant_type", "redirect_uri"],
@@ -63,19 +68,24 @@
                 },
                 "client_id": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "شناسه کلاینت"
                 },
                 "client_secret" : {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "کد دسترسی کلاینت"
                 },
                 "refresh_token" : {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "کد رفرش توکن"
                 },
                 "redirect_uri" : {
                     "type": "string",
-                    "format" : "uri"
+                    "format" : "uri",
+                    "title": "آدرس بازگشت",
+                    "description": "این آدرس باید در سرور SSO ثبت شده باشد"
                 }
             },
             "required": ["refresh_token", "client_id", "client_secret", "grant_type", "redirect_uri"],
@@ -101,19 +111,23 @@
             "properties": {
                 "token": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "توکن"
                 },
                 "token_type_hint" : {
                     "type": "string",
-                    "enum" : ["access_token","refresh_token","id_token"]
+                    "enum" : ["access_token","refresh_token","id_token"],
+                    "title": "نوع توکن"
                 },
                 "client_id": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "شناسه کلاینت"
                 },
                 "client_secret" : {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "کد دسترسی کلاینت"
                 }
             },
             "required": ["token", "token_type_hint", "client_id", "client_secret"],
@@ -140,19 +154,23 @@
             "properties": {
                 "token": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "توکن"
                 },
                 "token_type_hint" : {
                     "type": "string",
-                    "enum" : ["access_token","refresh_token","id_token"]
+                    "enum" : ["access_token","refresh_token","id_token"],
+                    "title": "نوع توکن"
                 },
                 "client_id": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "شناسه کلاینت"
                 },
                 "client_secret" : {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "کد دسترسی کلاینت"
                 }
             },
             "required": ["token", "token_type_hint", "client_id", "client_secret"],
@@ -183,31 +201,39 @@
             "properties": {
                 "api_token" : {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "توکن کسب و کار"
                 },
                 "client_id": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "شناسه کلاینت"
                 },
                 "device_name": {
-                    "type": "string"
+                    "type": "string",
+                    "title": "نام دستگاه"
                 },
                 "device_uid" : {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "شناسه یکتا دستگاه"
                 },
                 "device_lat": {
-                    "type": "number"
+                    "type": "number",
+                    "title": "عرض جغرافیایی موقعیت دستگاه"
                 },
                 "device_lon" : {
-                    "type": "number"
+                    "type": "number",
+                    "title": "طول جغرافیایی موقعیت دستگاه"
                 },
                 "device_type" : {
                     "type": "string",
-                    "enum" : ["Mobile Phone", "Desktop", "Tablet", "Console", "TV Device"]
+                    "enum" : ["Mobile Phone", "Desktop", "Tablet", "Console", "TV Device"],
+                    "title": "نوع دستگاه"
                 },
                 "device_os_version" : {
-                    "type": "string"
+                    "type": "string",
+                    "title": "نسخه سیستم عامل دستگاه"
                 }
             },
             "required": ["api_token","client_id","device_uid"],
@@ -249,23 +275,28 @@
                 },
                 "response_type": {
                     "type": "string",
-                    "enum" : ["code","token","id_token"]
+                    "enum" : ["code","token","id_token"],
+                    "description": "روش دریافت کد اعتبارسنجی از سرور SSO"
                 },
                 "loginAsUserId": {
                     "type": "string"
                 },
                 "state" : {
-                    "type": "string"
+                    "type": "string",
+                    "description": "سرور SSO مقدار این فیلد را به همان صورتی که دریافت کند به شما باز میگرداند"
                 },
                 "client_id": {
                     "type": "string"
                 },
                 "redirect_uri": {
                     "type": "string",
-                    "format" : "uri"
+                    "format" : "uri",
+                    "title": "آدرس بازگشت",
+                    "description": "این آدرس باید در سرور SSO ثبت شده باشد"
                 },
                 "scope": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "اسکوپ هایی که نیاز دارید. اسکوپ ها را با ، (+ یا space) از یکدیگر جدا کنید"
                 },
                 "callback_uri": {
                     "type": "string"
@@ -274,7 +305,8 @@
                     "type": "string"
                 },
                 "code_challenge_method": {
-                    "type": "string"
+                    "type": "string",
+                    "title": "روش تولید Code Challenge"
                 },
                 "referrerType": {
                     "type": "string",
@@ -311,11 +343,13 @@
                 },
                 "keyId": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "description": "کد دریافتی از متد handshake"
                 },
                 "signature": {
                     "type": "string",
-                    "minLength" : 1
+                    "minLength" : 1,
+                    "title": "امضا"
                 },
                 "headers": {
                     "type": "string"
@@ -352,15 +386,18 @@
                 },
                 "code": {
                     "type": "string",
-                     "minLength" : 1
+                     "minLength" : 1,
+                    "title": "کد دریافتی از سرور SSO"
                 },
                 "client_id": {
                     "type": "string",
-                     "minLength" : 1
+                     "minLength" : 1,
+                    "title": "شناسه کلاینت"
                 },
                 "client_secret" : {
                     "type": "string",
-                     "minLength" : 1
+                     "minLength" : 1,
+                    "title": "کد دسترسی کلاینت"
                 }
             },
             "required": ["code", "client_id", "client_secret", "grant_type"],

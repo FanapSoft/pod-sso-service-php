@@ -265,15 +265,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FanapSoft/pod-base-service-php.git",
-                "reference": "70e942812bece32af8aebd1d9d66ef3dcb622016"
+                "reference": "79987f51e05d79f2d065daad3b7cb0352959c3e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FanapSoft/pod-base-service-php/zipball/70e942812bece32af8aebd1d9d66ef3dcb622016",
-                "reference": "70e942812bece32af8aebd1d9d66ef3dcb622016",
+                "url": "https://api.github.com/repos/FanapSoft/pod-base-service-php/zipball/79987f51e05d79f2d065daad3b7cb0352959c3e7",
+                "reference": "79987f51e05d79f2d065daad3b7cb0352959c3e7",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
                 "guzzlehttp/guzzle": "^6.3",
                 "justinrainbow/json-schema": "^5.2",
                 "php": ">=5.5"
@@ -281,7 +282,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Pod\\Base\\Service\\": "models/"
+                    "Pod\\Base\\Service\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -294,13 +295,13 @@
                     "email": "podsdk@fanap.ir"
                 }
             ],
-            "description": "pod sdk common classes and methods",
+            "description": "pod sdk base service",
             "keywords": [
                 "pod sdk",
                 "pod sdk base service",
                 "sdk"
             ],
-            "time": "2019-07-23T14:13:44+00:00"
+            "time": "2019-08-28T14:00:54+00:00"
         },
         {
             "name": "psr/http-message",
