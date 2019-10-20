@@ -261,13 +261,18 @@ class SSOService extends BaseService {
         ];
 
         self::validateOption($apiName, $option, $paramKey);
-            return ApiRequestHandler::Request(
-                $this->baseUri,
-                self::$ssoApi[$apiName]['method'],
-                self::$ssoApi[$apiName]['subUri'],
-                $option,
-                true
-            );
+        $result = ApiRequestHandler::Request(
+            $this->baseUri,
+            self::$ssoApi[$apiName]['method'],
+            self::$ssoApi[$apiName]['subUri'],
+            $option,
+            true
+        );
+        if (empty($result)) {
+            return [
+                "result" => 'The operation was successful!'
+            ];
+        }
     }
 
     // Handshake
