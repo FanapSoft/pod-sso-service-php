@@ -2,6 +2,7 @@
 namespace Pod\Sso\Service;
 
 use Pod\Base\Service\BaseService;
+use Pod\Base\Service\BaseInfo;
 use Pod\Base\Service\ApiRequestHandler;
 use Exception;
 use Pod\Base\Service\ClientInfo;
@@ -18,6 +19,7 @@ class SSOService extends BaseService {
      */
     private $clientInfo;
     private $header;
+    private static $jsonSchema;
     private static $ssoApi =
     [
         // #1, get oauth access token
@@ -72,6 +74,7 @@ class SSOService extends BaseService {
 
     public function __construct($clientInfo = null)
     {
+        BaseInfo::initServerType(BaseInfo::PRODUCTION_SERVER);
         parent::__construct();
         $this->clientInfo = $clientInfo;
         $this->baseUri = self::$config['Production']['SSO-ADDRESS'];
@@ -144,7 +147,7 @@ class SSOService extends BaseService {
             $paramKey => $params,
         ];
 
-        self::validateOption($apiName, $option, $paramKey);
+        self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
         return ApiRequestHandler::Request(
             $this->baseUri,
             self::$ssoApi[$apiName]['method'],
@@ -187,7 +190,7 @@ class SSOService extends BaseService {
             $paramKey => $params,
         ];
 
-        self::validateOption($apiName, $option, $paramKey);
+        self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
         return ApiRequestHandler::Request(
             $this->baseUri,
             self::$ssoApi[$apiName]['method'],
@@ -224,7 +227,7 @@ class SSOService extends BaseService {
             $paramKey => $params,
         ];
 
-        self::validateOption($apiName, $option, $paramKey);
+        self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
         return ApiRequestHandler::Request(
             $this->baseUri,
             self::$ssoApi[$apiName]['method'],
@@ -260,7 +263,7 @@ class SSOService extends BaseService {
             $paramKey => $params,
         ];
 
-        self::validateOption($apiName, $option, $paramKey);
+        self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
         $result = ApiRequestHandler::Request(
             $this->baseUri,
             self::$ssoApi[$apiName]['method'],
@@ -310,7 +313,7 @@ class SSOService extends BaseService {
             $paramKey => $params,
         ];
 
-        self::validateOption($apiName, $option, $paramKey);
+        self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
         unset($params['api_token']);
         return ApiRequestHandler::Request(
             $this->baseUri,
@@ -348,18 +351,17 @@ class SSOService extends BaseService {
     public function signatureAuthorize($params) {
 
         array_walk_recursive($params, 'self::prepareData');
-        $data = '';
         $authorizationHeader = '';
         
         $headerType = isset($params['headerType']) ? $params['headerType'] : 'host';
         unset($params['headerType']);
 
 //        if ($headerType == 'host' || $headerType == 'Host') {
-            $data = 'host: accounts.pod.land';
+            $data = 'host: accounts.pod.ir';
 //        }
 //        elseif ($headerType == 'host date' || $headerType == 'Host Date')  {
-//            $data = 'host: accounts.pod.land'. PHP_EOL .' date: Mon 17 2019 18:14:25 GMT+0430';
-//            $data = 'host: accounts.pod.land\n date: Mon Jun 17 2019 18:13:25 GMT+0430';
+//            $data = 'host: accounts.pod.ir'. PHP_EOL .' date: Mon 17 2019 18:14:25 GMT+0430';
+//            $data = 'host: accounts.pod.ir\n date: Mon Jun 17 2019 18:13:25 GMT+0430';
 //
 //        }
 
@@ -382,7 +384,7 @@ class SSOService extends BaseService {
             $paramKey => $params,
         ];
 
-        self::validateOption($apiName, $option, $paramKey);
+        self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
         unset($option[$paramKey]['identity']);
         unset($params['headerType']);
         unset($params['privateKey']);
@@ -433,7 +435,7 @@ class SSOService extends BaseService {
             $paramKey => $params,
         ];
 
-        self::validateOption($apiName, $option, $paramKey);
+        self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
         unset($params['identity']);
         unset($params['keyId']);
         unset($params['signature']);
@@ -477,7 +479,7 @@ class SSOService extends BaseService {
             $paramKey => $params,
         ];
 
-        self::validateOption($apiName, $option, $paramKey);
+        self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
         return ApiRequestHandler::Request(
             $this->baseUri,
             self::$ssoApi[$apiName]['method'],
