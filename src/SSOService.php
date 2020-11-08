@@ -314,7 +314,7 @@ class SSOService extends BaseService {
         ];
 
         self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
-        unset($params['api_token']);
+        unset($option[$paramKey]['api_token']);
         return ApiRequestHandler::Request(
             $this->baseUri,
             self::$ssoApi[$apiName]['method'],
@@ -386,9 +386,9 @@ class SSOService extends BaseService {
 
         self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
         unset($option[$paramKey]['identity']);
-        unset($params['headerType']);
-        unset($params['privateKey']);
-        unset($params['keyId']);
+        unset($option[$paramKey]['headerType']);
+        unset($option[$paramKey]['privateKey']);
+        unset($option[$paramKey]['keyId']);
         $result = ApiRequestHandler::Request(
             $this->baseUri,
             self::$ssoApi[$apiName]['method'],
@@ -436,10 +436,10 @@ class SSOService extends BaseService {
         ];
 
         self::validateOption($option, self::$jsonSchema[$apiName], $paramKey);
-        unset($params['identity']);
-        unset($params['keyId']);
-        unset($params['signature']);
-        unset($params['headers']);
+        unset($option[$paramKey]['identity']);
+        unset($option[$paramKey]['keyId']);
+        unset($option[$paramKey]['signature']);
+        unset($option[$paramKey]['headers']);
 
         return ApiRequestHandler::Request(
             $this->baseUri,
