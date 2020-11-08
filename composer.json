@@ -1,6 +1,6 @@
 {
   "name": "pod-sdk/pod-sso-service",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "type": "library",
   "keywords": ["sdk", "pod sdk", "pod sdk sso service"],
   "license": "MIT",
